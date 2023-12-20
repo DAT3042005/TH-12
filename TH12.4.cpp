@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<conio.k>
+#include<conio.h>
 #include<string.h>
 
 typedef struct
@@ -24,15 +24,15 @@ int main()
    printf("\t 4. Ban chon 1,2,3,4: ");
    scanf("%d",&c);
    fflush(stdin);
-   if(==1)
+   if(c==1)
    {
   	 writeFile("SinhVien.txt");
    }
-   else if (==2)
+   else if (c==2)
    {
      ReadFile("SinhVien.txt");
    }	
-   else if (==3)
+   else if (c==3)
    {
      search("SinhVien.txt");
    }
@@ -40,18 +40,74 @@ int main()
  }
 }
 
+ void winteFile(char *FileName)
+ { 
+   FILE*f;
+   int n,i;
+   SinhVien sv;
+   f=fopen(FileName,"ab");
+   printf("nhap vao so luong sinh vien ");
+   scantf("%d",&n);
+   for(i=1;i<=n,i++)
+   { 
+    printf("sinh vien thu %i\n",i);
+    fflush(stdin);
+    printf(" - MSSV: ");
+    gets(sv.Ma);
+    printf(" - Ho ten: ");
+    gets(sv.Hoten);
+    fwrite(&sv,sizeof(sv),1,f);
+} 
+  fclose(f);
+  printf("Bam phim bat ky de tiep tuc");
+  getch();
+}
+  void ReadFile(char *FileName)
+{ 
+  FILE *f;
+  SinhVien sv
+   f=fopen(FileName,"rb");
+   printf(" MSSV | Ho va ten\n");
+   fread(&sv,sizeof(sv),1,7);
+   while(!feof(f))
+{ 
+  printf(" %s | %s\n",sv,Ma,sv.HoTen);
+  fread(&sv,sizeof(sv),1,7);
+}
+  fclose(f);
+  printf("Bam phim bat ky de tiep tuc!!!");
+  getch();
+}
 
-
-
-
-
-
-
-
-
-
-
-
+  void Seach(char *FileName)
+{ 
+  char MSSV[10];
+  FILE*f;
+  int Found=0;
+  SinhVien sv;
+  fflush(stdin);
+  printf("Ma so sinh vien can tim: ");
+  gets(MSSV);
+  f=fopen(FileName,"rb");
+     while(!feof(f) && Foud==0)
+{ 
+  fread(&sv,sizeof(sv),1,7);
+  if ( strcmp(sv,Ma,MSSV))==0
+    Foud=1;
+}
+  fclose(f);
+ if (Foud==1)
+ { 
+   printf("tim thay sv co ma %s. Ho ten la: %s ",sv,Ma,sv.HoTen);
+ }
+ else 
+ {
+   printf("tim khong thay sinh vien co ma %s",MSSV);
+ }
+ printf("\nBam phim bat ky de tiep tuc!!!")  ;
+ getch();
+ 
+}
 
 
 
